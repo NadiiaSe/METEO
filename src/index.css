@@ -65,8 +65,8 @@ main {
   font-weight: bold;
 }
 .weather-app-icon {
-  width: 88px;
-  height: 88px;
+  width: 100px;
+  height: 100px;
 }
 .weather-app-unit {
   margin-top: 6px;
