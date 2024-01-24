@@ -53,5 +53,32 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHtml = "";
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+
+            <div class="col-2">
+              <div class="weather-forecast-date">${day}</div>
+              <img
+                src="http://openweathermap.org/img/wn/50d@2x.png"
+                alt=""
+                width="36"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="wetaher-forecast-temperature-max">18 </span
+                ><span class="wetaher-forecast-temperature-min">12</span>
+              </div>
+            `;
+  });
+
+  forecastElement.innerHTML = forecastHtml;
+}
+
 searchCity("Lisbon");
+displayForecast();
 // console.log(response.data);
