@@ -50,18 +50,22 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
+function getForecast(city) {
+  let apiKey = "f06b9734o075253b151ea4d1t9a01a6e";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&`;
+  axios(apiUrl).then(displayForecast);
+}
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
+function displayForecast(response) {
+  console.log(response.data);
+
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
   days.forEach(function (day) {
     forecastHtml =
       forecastHtml +
       `
-
+<div class="forecast-conteiner">
             <div class="col-2">
               <div class="weather-forecast-date">${day}</div>
               <img
@@ -73,12 +77,14 @@ function displayForecast() {
                 <span class="wetaher-forecast-temperature-max">18 </span
                 ><span class="wetaher-forecast-temperature-min">12</span>
               </div>
+              </div>
             `;
   });
-
+  let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
-
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
 searchCity("Lisbon");
-displayForecast();
+getForecast("Lisbon");
 // console.log(response.data);
